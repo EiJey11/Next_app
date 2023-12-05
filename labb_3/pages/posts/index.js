@@ -37,8 +37,9 @@ function AllPosts({ posts }) {
 
 export default AllPosts
 
+// Start json server with command - serve db.json. Then add link to fetch.
 export async function getServerSideProps() {
-    const response = await fetch('http://localhost:64868/db.json')
+    const response = await fetch('http://localhost:55994')
     const data = await response.json()
 
     return {
