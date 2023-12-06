@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import TodoList from './TodoList'
 import SearchForm from './SearchForm'
 
@@ -40,21 +40,24 @@ const Todo = () => {
         }).then((res) => res.json())
     }
 
-    const handleSearch = (searchQuery) => {
-        if (searchQuery !== '') {
-            const results = allTodos.filter((todo) =>
-                todo.title.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-            setTodos(results)
-            setShowDefaultList(false)
-        } else {
-            setTodos(allTodos.slice(0, 10))
-            setShowDefaultList(true)
-        }
-    }
+    const handleSearch = useCallback(
+        (searchQuery) => {
+            if (searchQuery !== '') {
+                const results = allTodos.filter((todo) =>
+                    todo.title.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                setTodos(results)
+                setShowDefaultList(false)
+            } else {
+                setTodos(allTodos.slice(0, 10))
+                setShowDefaultList(true)
+            }
+        },
+        [allTodos]
+    )
 
     return (
-        <div className="flex flex-col min-h-screen items-left justify-center ml-24">
+        <div className="flex flex-col items-left justify-center ml-24">
             <h1 className="text-3xl font-bold my-[2%]">GraphQL Todos</h1>
             <SearchForm onSearch={handleSearch} />
             <TodoList todos={todos} />

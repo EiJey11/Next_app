@@ -1,6 +1,6 @@
 function AllPosts({ posts }) {
     return (
-        <div className="flex flex-col justify-center items-center w-full min-h-screen">
+        <div className="flex flex-col justify-center items-center w-full">
             <h1 className="text-3xl font-extrabold mb-8">Posts</h1>
             <div className="flex flex-wrap justify-center mx-32 my-16">
                 {posts.slice(0, 6).map((post) => {
@@ -37,9 +37,8 @@ function AllPosts({ posts }) {
 
 export default AllPosts
 
-// Start json server with command - serve db.json. Then add link to fetch.
 export async function getServerSideProps() {
-    const response = await fetch('http://localhost:55994')
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts')
     const data = await response.json()
 
     return {

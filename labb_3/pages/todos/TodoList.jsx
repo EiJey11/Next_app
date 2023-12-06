@@ -1,5 +1,3 @@
-import TodoDetails from './Todo'
-
 const TodoList = ({ todos }) => {
     return (
         <ol className="mt-2 mb-8" id="todos">
