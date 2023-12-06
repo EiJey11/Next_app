@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import TodoList from './TodoList'
 import SearchForm from './SearchForm'
 
 const apiUrl = 'https://graphqlzero.almansi.me/api'
@@ -60,7 +59,15 @@ const Todo = () => {
         <div className="flex flex-col items-left justify-center ml-24">
             <h1 className="text-3xl font-bold my-[2%]">GraphQL Todos</h1>
             <SearchForm onSearch={handleSearch} />
-            <TodoList todos={todos} />
+            <ol className="mt-2 mb-8" id="todos">
+                <h3 className="text-3xl mb-6">Todos list</h3>
+                {todos.map((todo) => (
+                    <div key={todo.id}>
+                        <h2 className="text-lg font-semibold">{todo.title}</h2>
+                        <p className="mt-2">{`User: ${todo.user.name}, City: ${todo.user.address.city}`}</p>
+                    </div>
+                ))}
+            </ol>
         </div>
     )
 }
