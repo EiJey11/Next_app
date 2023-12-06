@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const SearchForm = ({ onSearch }) => {
+const SearchForm = ({ onSearch, todos }) => {
     const [searchQuery, setSearchQuery] = useState('')
 
     const handleSearchSubmit = (e) => {

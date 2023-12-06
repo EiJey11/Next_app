@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import TodoList from '../../components/TodoList'
-import SearchForm from '../../components/SearchForm'
+import TodoList from './TodoList'
+import SearchForm from './SearchForm'
 
-const apiUrl = 'https://graphqlzero.almansi.me/api' //API link
+const apiUrl = 'https://graphqlzero.almansi.me/api'
 
 const Todo = () => {
     const [todos, setTodos] = useState([])
@@ -26,7 +26,7 @@ const Todo = () => {
             }
         }`).then((data) => {
             setAllTodos(data.data.todos.data)
-            setTodos(data.data.todos.data.slice(0, 10)) // How many todos on main page by default
+            setTodos(data.data.todos.data.slice(0, 10))
         })
     }, [])
 
@@ -38,7 +38,7 @@ const Todo = () => {
             },
             body: JSON.stringify({ query })
         }).then((res) => res.json())
-    } // GraphQL Query request
+    }
 
     const handleSearch = (searchQuery) => {
         if (searchQuery !== '') {
@@ -51,7 +51,7 @@ const Todo = () => {
             setTodos(allTodos.slice(0, 10))
             setShowDefaultList(true)
         }
-    } //Todos by Search or by default
+    }
 
     return (
         <div className="flex flex-col min-h-screen items-left justify-center ml-24">
